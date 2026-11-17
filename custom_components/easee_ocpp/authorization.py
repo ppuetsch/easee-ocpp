@@ -10,15 +10,11 @@ registered as tag.
 
 from __future__ import annotations
 
-import logging
-
 from homeassistant.components.tag import TAG_DATA, async_scan_tag
 from homeassistant.core import HomeAssistant, callback
 
 from .const import EVENT_AUTHORIZATION
 from .models import IdTag, Serial
-
-_LOGGER = logging.getLogger(__name__)
 
 # RemoteStartTransaction from Home Assistant uses this tag; it is always accepted.
 REMOTE_START_ID_TAG = "HOMEASSISTANT"
@@ -53,6 +49,4 @@ class TagAuthorizer:
         if allowed:
             self._hass.async_create_task(async_scan_tag(self._hass, tag_id or id_tag, None))
         self._hass.bus.async_fire(EVENT_AUTHORIZATION, {"serial": serial, "id_tag": id_tag, "accepted": allowed})
-        if not allowed:
-            _LOGGER.info("%s: RFID card %s rejected (no tag in Home Assistant)", serial, id_tag)
         return allowed

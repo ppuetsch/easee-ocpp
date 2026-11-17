@@ -273,7 +273,7 @@ class EaseeChargePoint(ChargePoint):
         if allowed:
             _LOGGER.info("%s: RFID card %s accepted", self.id, id_tag)
         else:
-            _LOGGER.warning("%s: RFID card %s rejected (not on the whitelist)", self.id, id_tag)
+            _LOGGER.warning("%s: RFID card %s rejected (no Home Assistant tag)", self.id, id_tag)
         self._on_state_changed()
         status = AuthorizationStatus.accepted if allowed else AuthorizationStatus.invalid
         return IdTagInfo(status=status)
