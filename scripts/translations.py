@@ -486,15 +486,17 @@ def repair_issue(
     errors: dict[str, str],
     aborts: dict[str, str],
 ) -> Texts:
-    """Texts of one repair issue with the re-apply fix flow."""
+    """Texts of one repair issue with the re-apply fix flow.
+
+    Fixable issues carry their description in the fix flow step (hassfest rule).
+    """
     return {
         "title": title,
-        "description": description,
         "fix_flow": {
             "step": {
                 "init": {
                     "title": fix_title,
-                    "description": fix_description,
+                    "description": description + "\n\n" + fix_description,
                     "data": {"ocpp_url": url_label},
                 }
             },
