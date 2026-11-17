@@ -1,0 +1,7 @@
+{
+  "name": "Easee Local OCPP",
+  "homeassistant": "2026.10.0",
+  "zip_release": true,
+  "filename": "easee_ocpp.zip",
+  "render_readme": true
+}

@@ -1,0 +1,15 @@
+{
+  "domain": "easee_ocpp",
+  "name": "Easee Local OCPP",
+  "codeowners": ["@ppuetsch"],
+  "config_flow": true,
+  "dependencies": ["http", "network", "repairs", "tag"],
+  "documentation": "https://github.com/ppuetsch/easee-ocpp",
+  "integration_type": "hub",
+  "iot_class": "local_push",
+  "issue_tracker": "https://github.com/ppuetsch/easee-ocpp/issues",
+  "loggers": ["ocpp"],
+  "requirements": ["ocpp==2.1.0"],
+  "single_config_entry": true,
+  "version": "0.1.0"
+}

@@ -1,0 +1,4 @@
+openapi-python-client==0.29.1
+ruff==0.17.3
+mypy
+-r requirements-test.txt

@@ -1,0 +1,9 @@
+# Generated from openapi/easee-cloud-api.json by scripts/generate_easee_client.py (CI and release build it)
+custom_components/easee_ocpp/easee_cloud_client/
+
+.venv/
+__pycache__/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+*.zip
