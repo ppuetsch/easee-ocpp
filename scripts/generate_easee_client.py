@@ -119,7 +119,18 @@ def fix_connection_details_response(paths: JsonObject) -> None:
 
 
 SCHEMA_FIXES = (fix_observation_value,)
-PATH_FIXES = (fix_connection_details_response,)
+
+
+def fix_empty_ocpp_responses(paths: JsonObject) -> None:
+    """Applying and disabling OCPP answer 200 with an empty body, not the declared JSON object."""
+    for path, method in (
+        ("/local-ocpp/v1/connections/chargers/{serialNumber}", "post"),
+        ("/local-ocpp/v1/connections/chargers/{serialNumber}", "delete"),
+    ):
+        paths[path][method]["responses"]["200"].pop("content", None)
+
+
+PATH_FIXES = (fix_connection_details_response, fix_empty_ocpp_responses)
 
 
 def filtered_specification() -> JsonObject:
