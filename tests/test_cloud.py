@@ -24,8 +24,8 @@ def easee_api():
 
 
 async def test_enable_stores_and_applies_with_empty_apply_answer(easee_api: respx.MockRouter) -> None:
-    """Applying answers 200 with an empty body; the call still succeeds."""
-    store = easee_api.post(f"/local-ocpp/v1/connection-details/{SERIAL}").respond(200, json={"version": "v-1"})
+    """Storing answers 201, applying 200 with an empty body (as the real API does)."""
+    store = easee_api.post(f"/local-ocpp/v1/connection-details/{SERIAL}").respond(201, json={"version": "v-1"})
     apply = easee_api.post(f"/local-ocpp/v1/connections/chargers/{SERIAL}").respond(200, content=b"")
 
     await EaseeCloud("user", "password").async_enable(SERIAL, "ws://ha:8123/api/easee_ocpp", "secret")

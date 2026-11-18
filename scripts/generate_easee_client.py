@@ -130,7 +130,13 @@ def fix_empty_ocpp_responses(paths: JsonObject) -> None:
         paths[path][method]["responses"]["200"].pop("content", None)
 
 
-PATH_FIXES = (fix_connection_details_response, fix_empty_ocpp_responses)
+def fix_created_connection_details(paths: JsonObject) -> None:
+    """Storing connection details answers 201 Created (declared: 200) with the same body."""
+    post_operation = paths["/local-ocpp/v1/connection-details/{serialNumber}"]["post"]
+    post_operation["responses"]["201"] = post_operation["responses"]["200"]
+
+
+PATH_FIXES = (fix_connection_details_response, fix_empty_ocpp_responses, fix_created_connection_details)
 
 
 def filtered_specification() -> JsonObject:
